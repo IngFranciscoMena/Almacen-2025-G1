@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # se registran las aplicaciones creadas en el proyecto
     'productos',
+    'core',
 ]
 
 MIDDLEWARE = [
