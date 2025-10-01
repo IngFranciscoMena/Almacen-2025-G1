@@ -1,0 +1,14 @@
+{% extends "core/base.html" %}
+
+{% block title %} Nueva Categoria {% endblock %}
+
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_table }}
+
+    <button class="btn btn-success" type="submit">✅ Guardar</button>
+    <a href="{% url 'productos:categoria-list' %}" class="btn btn-outline-info">Cancelar</a>
+</form>
+{% endblock %}
