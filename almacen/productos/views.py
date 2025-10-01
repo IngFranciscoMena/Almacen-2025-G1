@@ -5,6 +5,8 @@ from django.views.generic import ListView, CreateView
 from .models import Producto, Categoria
 # importar método reverse_lazy
 from django.urls import reverse_lazy
+# importar los formularios personalizados
+from .forms import CategoriaForm
 
 # Create your views here.
 
@@ -29,6 +31,6 @@ class CategoriaListView(ListView):
 class CategoriaCreateView(CreateView):
     
     model = Categoria
-    fields = ["nombre", "descripcion"]
+    form_class = CategoriaForm
     template_name = "categoria/categoria-form.html"
     success_url = reverse_lazy("productos:categoria-list")

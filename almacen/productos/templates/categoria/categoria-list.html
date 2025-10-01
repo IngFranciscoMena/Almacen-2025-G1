@@ -18,7 +18,7 @@
     {% for c in categorias %}
     <tr>
       {% comment %} agregar un enumerate {% endcomment %}
-      <th scope="row">{{ forLoop.counter }}</th>
+      <th scope="row">{{ forloop.counter }}</th>
       <td>{{ c.nombre }}</td>
       <td>{{ c.descripcion }}</td>
     </tr>
