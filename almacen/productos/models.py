@@ -23,7 +23,7 @@ class Proveedor(models.Model):
     nombre = models.CharField(max_length=100)
     telefono = models.CharField(max_length=20, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
-    descripcion = models.TextField(null=True, blank=True)
+    direccion = models.TextField(null=True, blank=True)
     contacto = models.CharField(max_length=100, null=True, blank=True)
     
     # ajustar la tabla

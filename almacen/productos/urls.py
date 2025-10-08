@@ -7,6 +7,9 @@ from .views import (
     # Categoria
     CategoriaListView,
     CategoriaCreateView,
+    # Proveedor
+    ProveedorListView,
+    ProveedorCreateView
     
 )
 
@@ -15,7 +18,12 @@ app_name = "productos"
 
 # crear el enrutamiento de las url
 urlpatterns = [
+    # producto
     path('', ProductoListView.as_view(), name="producto-list"),
-    path('categoria/', CategoriaListView.as_view(), name="categoria-list"),
-    path('categoria/nuevo', CategoriaCreateView.as_view(), name="categoria-create")
+    # categoria
+    path('categorias/', CategoriaListView.as_view(), name="categoria-list"),
+    path('categorias/nuevo', CategoriaCreateView.as_view(), name="categoria-create"),
+    # proveedor
+    path('proveedores/', ProveedorListView.as_view(), name="proveedor-list"),
+    path('proveedores/nuevo', ProveedorCreateView.as_view(), name="proveedor-form")
 ]

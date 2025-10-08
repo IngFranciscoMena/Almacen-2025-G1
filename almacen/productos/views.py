@@ -2,11 +2,11 @@ from django.shortcuts import render
 # importar vistas genericas
 from django.views.generic import ListView, CreateView
 # importar las clases
-from .models import Producto, Categoria
+from .models import Producto, Categoria, Proveedor
 # importar método reverse_lazy
 from django.urls import reverse_lazy
 # importar los formularios personalizados
-from .forms import CategoriaForm
+from .forms import CategoriaForm, ProveedorForm
 
 # Create your views here.
 
@@ -28,9 +28,26 @@ class CategoriaListView(ListView):
     template_name = "categoria/categoria-list.html"
     context_object_name = "categorias"
 
+# crear una clase generica para guardar una nueva categoria
 class CategoriaCreateView(CreateView):
     
     model = Categoria
     form_class = CategoriaForm
     template_name = "categoria/categoria-form.html"
     success_url = reverse_lazy("productos:categoria-list")
+    
+    
+# crear una clase generica para mostrar el listado de proveedor
+class ProveedorListView(ListView):
+    
+    model = Proveedor
+    template_name = "proveedor/proveedor-list.html"
+    context_object_name = "proveedores"
+
+# crear una clase generica para guardar un nuevo proveedor
+class ProveedorCreateView(CreateView):
+    
+    model = Proveedor
+    form_class = ProveedorForm
+    template_name = "proveedor/proveedor-form.html"
+    success_url = reverse_lazy("productos:proveedor-list")
