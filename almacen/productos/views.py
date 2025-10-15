@@ -1,6 +1,6 @@
 from django.shortcuts import render
 # importar vistas genericas
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 # importar las clases
 from .models import Producto, Categoria, Proveedor
 # importar método reverse_lazy
@@ -26,6 +26,17 @@ class ProductoCreateView(CreateView):
     form_class = ProductoForm
     template_name = "producto/producto-form.html"
     success_url = reverse_lazy("productos:producto-list")
+
+# crear una nueva vista generica para editar un producto
+class ProductoUpdateView(UpdateView):
+
+    model = Producto
+    form_class = ProductoForm
+    template_name = "producto/producto-form.html"
+    success_url = reverse_lazy("productos:producto-list")
+
+class ProductoDeleteView(DeleteView):
+    pass
 
     
 # crear una clase generica para mostrar el listado de categorias

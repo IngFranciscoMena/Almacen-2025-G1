@@ -5,6 +5,7 @@ from .views import (
     # Producto
     ProductoListView,
     ProductoCreateView,
+    ProductoUpdateView,
     # Categoria
     CategoriaListView,
     CategoriaCreateView,
@@ -22,6 +23,7 @@ urlpatterns = [
     # producto
     path('', ProductoListView.as_view(), name="producto-list"),
     path('nuevo/', ProductoCreateView.as_view(), name="producto-create"),
+    path('editar/<int:pk>', ProductoUpdateView.as_view(), name="producto-update"),
     # categoria
     path('categorias/', CategoriaListView.as_view(), name="categoria-list"),
     path('categorias/nuevo', CategoriaCreateView.as_view(), name="categoria-create"),

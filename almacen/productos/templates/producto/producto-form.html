@@ -1,13 +1,26 @@
 {% extends "core/base.html" %}
 
-{% block title %} Nuevo Producto {% endblock %}
+<!-- tag para obtener un titulo dinamico -->
+{% block title %} 
+    {% if form.instance.pk %}
+        Editar Producto 
+    {% else %}
+        Nuevo Producto 
+    {% endif %}
+{% endblock %}
 
 {% block content %}
 <form method="post">
     {% csrf_token %}
     <div class="card mt-4 shadown-lg">
         <div class="card-header">
-            <h3 class="card-title">Nuevo Producto</h3>
+            <h3 class="card-title">
+                {% if form.instance.pk %}
+                    Editar Producto 
+                {% else %}
+                    Nuevo Producto 
+                {% endif %}
+            </h3>
         </div>
         <div class="card-body">
             <!-- {{ form.as_table }} -->
