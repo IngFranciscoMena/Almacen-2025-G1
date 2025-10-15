@@ -6,7 +6,7 @@ from .models import Producto, Categoria, Proveedor
 # importar método reverse_lazy
 from django.urls import reverse_lazy
 # importar los formularios personalizados
-from .forms import CategoriaForm, ProveedorForm
+from .forms import CategoriaForm, ProveedorForm, ProductoForm
 
 # Create your views here.
 
@@ -20,6 +20,13 @@ class ProductoListView(ListView):
     # nombre del contexto del objetos
     context_object_name = "productos"
     
+class ProductoCreateView(CreateView):
+
+    model = Producto
+    form_class = ProductoForm
+    template_name = "producto/producto-form.html"
+    success_url = reverse_lazy("productos:producto-list")
+
     
 # crear una clase generica para mostrar el listado de categorias
 class CategoriaListView(ListView):

@@ -3,7 +3,9 @@
 {% block title %} Listado de Productos {% endblock %}
 
 {% block content %}
-
+<h1 class="text-center">Listado de Productos</h1>
+<a href="{% url 'productos:producto-create' %}" class="btn btn-outline-success">Nuevo Producto</a>
+<hr>
 <table class="table table-hover">
   <thead>
     <tr>

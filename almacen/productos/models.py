@@ -17,6 +17,10 @@ class Categoria(models.Model):
         verbose_name_plural = "Categorias"
         ordering = ["nombre"]
 
+    # aplicar polimorfismo
+    def __str__(self):
+        return self.nombre
+
 class Proveedor(models.Model):
     
     # crear los atributos
@@ -41,9 +45,9 @@ class Producto(models.Model): # aplicando herencia
     descripcion = models.TextField(null=True, max_length=150) # descripcion varchar(150)
     precio_compra = models.DecimalField(max_digits=12, decimal_places=2) # precio decimal(12,2) not null
     precio_venta = models.DecimalField(max_digits=12, decimal_places=2) # precio decimal(12,2) not null
-    activo = models.BooleanField(default=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE)
+    activo = models.BooleanField(default=True)
 
 
     # crear un metodo
