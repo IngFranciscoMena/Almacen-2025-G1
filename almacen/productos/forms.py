@@ -32,7 +32,7 @@ class ProductoForm(forms.ModelForm):
         model = Producto
         fields = ["nombre", "descripcion", "precio_compra", "precio_venta", "activo", "categoria", "proveedor"]
         widgets = {
-            "nombre": forms.TextInput(attrs={"class": "form-control", "placeholder": "Nombre del Proveedor"}),
+            "nombre": forms.TextInput(attrs={"class": "form-control", "placeholder": "Nombre del Producto"}),
             "descripcion": forms.Textarea(attrs={"class": "form-control", "placeholder": "Descripción Producto", "rows": 3 }),
             "precio_compra": forms.NumberInput(attrs={"class": "form-control", "step":"0.01"}),
             "precio_venta": forms.NumberInput(attrs={"class": "form-control", "step":"0.01"}),

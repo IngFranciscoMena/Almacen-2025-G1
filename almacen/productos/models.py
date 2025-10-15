@@ -35,6 +35,11 @@ class Proveedor(models.Model):
         verbose_name = "Proveedor"
         verbose_name_plural = "Proveedores"
         ordering = ["nombre"]
+
+
+    # aplicar polimorfismo
+    def __str__(self):
+        return self.nombre
     
     
 # create table Producto()

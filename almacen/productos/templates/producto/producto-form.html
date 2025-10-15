@@ -4,17 +4,51 @@
 
 {% block content %}
 <form method="post">
-     {% csrf_token %}
+    {% csrf_token %}
     <div class="card mt-4 shadown-lg">
         <div class="card-header">
             <h3 class="card-title">Nuevo Producto</h3>
         </div>
-        <div class="card-body">           
-            {{ form.as_table }}
+        <div class="card-body">
+            <!-- {{ form.as_table }} -->
+
+            <table class="table border-0">
+                <!-- template tags -->
+                <div class="form-floating mb-3">
+                    {{ form.nombre }}
+                    {{ form.nombre.label_tag }}
+                </div>
+                <div class="form-floating mb-3">
+                    {{ form.descripcion }}
+                    {{ form.descripcion.label_tag }}
+                </div>
+                <div class="form-floating mb-3">
+                    {{ form.precio_compra }}
+                    {{ form.precio_compra.label_tag }}
+                </div>
+                <div class="form-floating mb-3">
+                    {{ form.precio_venta }}
+                    {{ form.precio_venta.label_tag }}
+                </div>
+                <div class="form-floating mb-3">
+                    {{ form.categoria }}
+                    {{ form.categoria.label_tag }}
+                </div>
+                <div class="form-floating mb-3">
+                    {{ form.proveedor }}
+                    {{ form.proveedor.label_tag }}
+                </div>
+                <div class="mb-3">
+                    <div class="form-check">
+                        {{ form.activo.label_tag }}
+                        {{ form.activo }}                        
+                    </div>
+                </div>
+            </table>
         </div>
         <div class="card-footer d-flex justify-content-between">
             <button class="btn btn-success" type="submit">✅ Guardar</button>
-            <a href="{% url 'productos:producto-list' %}" class="btn btn-outline-info">Cancelar</a>    
+            <a href="{% url 'productos:producto-list' %}" class="btn btn-outline-info">Cancelar</a>
         </div>
     </div>
 </form>
