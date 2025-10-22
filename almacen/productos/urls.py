@@ -6,6 +6,8 @@ from .views import (
     ProductoListView,
     ProductoCreateView,
     ProductoUpdateView,
+    ProductoDeleteView,
+    ProductoDetailView,
     # Categoria
     CategoriaListView,
     CategoriaCreateView,
@@ -22,8 +24,10 @@ app_name = "productos"
 urlpatterns = [
     # producto
     path('', ProductoListView.as_view(), name="producto-list"),
-    path('nuevo/', ProductoCreateView.as_view(), name="producto-create"),
+    path('<int:pk>', ProductoDetailView.as_view(), name="producto-detail"),
+    path('nuevo/', ProductoCreateView.as_view(), name="producto-create"),    
     path('editar/<int:pk>', ProductoUpdateView.as_view(), name="producto-update"),
+    path('eliminar/<int:pk>', ProductoDeleteView.as_view(), name="producto-delete"),
     # categoria
     path('categorias/', CategoriaListView.as_view(), name="categoria-list"),
     path('categorias/nuevo', CategoriaCreateView.as_view(), name="categoria-create"),

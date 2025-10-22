@@ -1,6 +1,6 @@
 from django.shortcuts import render
 # importar vistas genericas
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 # importar las clases
 from .models import Producto, Categoria, Proveedor
 # importar método reverse_lazy
@@ -35,8 +35,23 @@ class ProductoUpdateView(UpdateView):
     template_name = "producto/producto-form.html"
     success_url = reverse_lazy("productos:producto-list")
 
+class ProductoDetailView(DetailView):
+    
+    model = Producto
+    template_name = "producto/producto-detail.html"
+    context_object_name = "producto"
+
 class ProductoDeleteView(DeleteView):
-    pass
+
+    model = Producto
+    template_name = "producto/producto-confirm.html"
+    success_url = reverse_lazy("productos:producto-list")
+
+    # polimorfismo
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["titulo"] = f"Eliminar producto: {self.object.nombre}"
+        return context
 
     
 # crear una clase generica para mostrar el listado de categorias
