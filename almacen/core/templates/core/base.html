@@ -22,19 +22,27 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'productos:categoria-list' %}">Categorias</a>
+                            <a class="nav-link active" aria-current="page"
+                                href="{% url 'productos:categoria-list' %}">Categorias</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'productos:proveedor-list' %}">Proveedores</a>
-                        </li>       
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'productos:producto-list' %}">Productos</a>
-                        </li>                     
+                        </li>
                     </ul>
-                    <!-- <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form> -->
+                    {% if user.is_authenticated %}
+                    <span class="navbar-text text-light me-2">
+                        Usuario: {{ user.username }}
+                    </span>
+                    <form method="post" action="{% url 'logout' %}" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Cerrar sesión</button>
+                    </form>
+                    {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-primary btn-sm">Iniciar sesión</a>
+                    {% endif %}
                 </div>
             </div>
         </nav>
@@ -42,10 +50,10 @@
 
     <main>
         <!-- Contenido dinámico -->
-         <div class="container">
+        <div class="container">
             {% block content %}
             {% endblock %}
-         </div>        
+        </div>
     </main>
 
     <script src="{% static 'core/js/bootstrap.min.js' %}"></script>
