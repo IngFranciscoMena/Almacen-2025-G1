@@ -8,6 +8,7 @@ from .forms import RegistroUsuarioForm
 class LoginViewPersonalizado(LoginView):
     template_name = "core/login.html"
     redirect_authenticated_user = True
+    next_page = reverse_lazy('home')
 
 class LogoutViewPersonalizado(LogoutView):
     next_page = reverse_lazy('login')
