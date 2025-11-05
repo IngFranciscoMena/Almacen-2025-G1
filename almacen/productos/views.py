@@ -7,11 +7,14 @@ from .models import Producto, Categoria, Proveedor
 from django.urls import reverse_lazy
 # importar los formularios personalizados
 from .forms import CategoriaForm, ProveedorForm, ProductoForm
+# importar una libreria para la autenticacion de las vistas
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
 # crear una clase generica para mostrar el listado de productos
-class ProductoListView(ListView):
+
+class ProductoListView(LoginRequiredMixin, ListView):
     
     # Indicar el modelo base
     model = Producto
@@ -20,7 +23,7 @@ class ProductoListView(ListView):
     # nombre del contexto del objetos
     context_object_name = "productos"
     
-class ProductoCreateView(CreateView):
+class ProductoCreateView(LoginRequiredMixin, CreateView):
 
     model = Producto
     form_class = ProductoForm
@@ -28,20 +31,20 @@ class ProductoCreateView(CreateView):
     success_url = reverse_lazy("productos:producto-list")
 
 # crear una nueva vista generica para editar un producto
-class ProductoUpdateView(UpdateView):
+class ProductoUpdateView(LoginRequiredMixin, UpdateView):
 
     model = Producto
     form_class = ProductoForm
     template_name = "producto/producto-form.html"
     success_url = reverse_lazy("productos:producto-list")
 
-class ProductoDetailView(DetailView):
+class ProductoDetailView(LoginRequiredMixin, DetailView):
     
     model = Producto
     template_name = "producto/producto-detail.html"
     context_object_name = "producto"
 
-class ProductoDeleteView(DeleteView):
+class ProductoDeleteView(LoginRequiredMixin, DeleteView):
 
     model = Producto
     template_name = "producto/producto-confirm.html"
@@ -55,14 +58,14 @@ class ProductoDeleteView(DeleteView):
 
     
 # crear una clase generica para mostrar el listado de categorias
-class CategoriaListView(ListView):
+class CategoriaListView(LoginRequiredMixin, ListView):
     
     model = Categoria
     template_name = "categoria/categoria-list.html"
     context_object_name = "categorias"
 
 # crear una clase generica para guardar una nueva categoria
-class CategoriaCreateView(CreateView):
+class CategoriaCreateView(LoginRequiredMixin, CreateView):
     
     model = Categoria
     form_class = CategoriaForm
@@ -71,14 +74,14 @@ class CategoriaCreateView(CreateView):
     
     
 # crear una clase generica para mostrar el listado de proveedor
-class ProveedorListView(ListView):
+class ProveedorListView(LoginRequiredMixin, ListView):
     
     model = Proveedor
     template_name = "proveedor/proveedor-list.html"
     context_object_name = "proveedores"
 
 # crear una clase generica para guardar un nuevo proveedor
-class ProveedorCreateView(CreateView):
+class ProveedorCreateView(LoginRequiredMixin, CreateView):
     
     model = Proveedor
     form_class = ProveedorForm
